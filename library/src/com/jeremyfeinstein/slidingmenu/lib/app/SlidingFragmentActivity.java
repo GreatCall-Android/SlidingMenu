@@ -135,8 +135,8 @@ public class SlidingFragmentActivity extends SherlockFragmentActivity implements
 	/* (non-Javadoc)
 	 * @see com.jeremyfeinstein.slidingmenu.lib.app.SlidingActivityBase#setSlidingActionBarEnabled(boolean)
 	 */
-	public void setSlidingActionBarEnabled(boolean b) {
-		mHelper.setSlidingActionBarEnabled(b);
+	public void setSlidingActionBarEnabled(boolean enabled) {
+		mHelper.setSlidingActionBarEnabled(enabled);
 	}
 
 	/* (non-Javadoc)
@@ -147,6 +147,11 @@ public class SlidingFragmentActivity extends SherlockFragmentActivity implements
 		boolean b = mHelper.onKeyUp(keyCode, event);
 		if (b) return b;
 		return super.onKeyUp(keyCode, event);
+	}
+
+	@Override
+	public void setOverlayActionBarEnabled( boolean enabled ) {
+		mHelper.setOverlayActionBarEnabled( enabled );
 	}
 
 }
