@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+	The following must be defined via command-line (e.g. -Dversion.major=2)
+		version.major
+		version.minor
+		build.number
+		
+	These rules change the following parts of the code based on target:
+		- AndroidManifest.xml: versionName
+		- res/values/strings.xml: buildNumber
+		- src/com/greatcall/link/clientserver/LinkProviderConstants.java: HOST
+		- res\values\analytics.xml: ga_Trackingid and ga_debug
+-->
+<project name="custom_rules">
+	
+	<!-- import and flatten manifest data into properties -->
+	<!-- <xmlproperty file="AndroidManifest.xml" prefix="mfst" collapseAttributes="true" /> -->
+	
+	<!-- make changes to the code before the build -->
+	<target name="-pre-build">
+		<!-- Add any special handling for the project here -->
+	</target>
+	
+</project>
