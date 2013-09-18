@@ -26,6 +26,9 @@ public class SlidingActivityHelper {
 	private boolean mOnPostCreateCalled = false;
 
 	private boolean mEnableSlide = true;
+	
+	private boolean mOverlayActionBarEnabled = false;
+	
 
 	/**
 	 * Instantiates a new SlidingActivityHelper.
@@ -59,7 +62,8 @@ public class SlidingActivityHelper {
 		mOnPostCreateCalled = true;
 
 		mSlidingMenu.attachToActivity(mActivity, 
-				mEnableSlide ? SlidingMenu.SLIDING_WINDOW : SlidingMenu.SLIDING_CONTENT);
+				mEnableSlide ? SlidingMenu.SLIDING_WINDOW : SlidingMenu.SLIDING_CONTENT,
+				mOverlayActionBarEnabled );
 		
 		final boolean open;
 		final boolean secondary;
@@ -94,10 +98,15 @@ public class SlidingActivityHelper {
 	 */
 	public void setSlidingActionBarEnabled(boolean slidingActionBarEnabled) {
 		if (mOnPostCreateCalled)
-			throw new IllegalStateException("enableSlidingActionBar must be called in onCreate.");
+			throw new IllegalStateException("setSlidingActionBarEnabled must be called in onCreate.");
 		mEnableSlide = slidingActionBarEnabled;
 	}
 
+	public void setOverlayActionBarEnabled( boolean overlayActionBarEnabled ) {
+		if( mOnPostCreateCalled ) 
+			throw new IllegalStateException( "setOverlayActionBarEnabled must be called in onCreate.");
+		mOverlayActionBarEnabled = true;
+	}
 	/**
 	 * Finds a view that was identified by the id attribute from the XML that was processed in onCreate(Bundle).
 	 * 

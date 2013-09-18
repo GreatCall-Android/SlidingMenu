@@ -71,4 +71,11 @@ public interface SlidingActivityBase {
 	 */
 	public void setSlidingActionBarEnabled(boolean slidingActionBarEnabled);
 	
+	/**
+	 * Controls whether the ActionBar is to be displayed in Overlay mode.
+	 *
+	 * @param overlayActionBarEnabled True if you want the ActionBar to be displayed in overlay mode.
+	 */
+	public void setOverlayActionBarEnabled( boolean overlayActionBarEnabled );
+	
 }
