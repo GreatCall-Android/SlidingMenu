@@ -11,7 +11,7 @@
 		- src/com/greatcall/link/clientserver/LinkProviderConstants.java: HOST
 		- res\values\analytics.xml: ga_Trackingid and ga_debug
 -->
-<project name="SlidingMenu">
+<project name="SlidingMenuPrebuild">
 	
 	<!-- import and flatten manifest data into properties -->
 	<!-- <xmlproperty file="AndroidManifest.xml" prefix="mfst" collapseAttributes="true" /> -->
