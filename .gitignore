@@ -17,3 +17,4 @@ gen
 .idea
 .DS_Store
 target/
+local.properties
