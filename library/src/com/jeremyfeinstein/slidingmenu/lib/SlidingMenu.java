@@ -1020,5 +1020,42 @@ public class SlidingMenu extends RelativeLayout {
 			});
 		}
 	}
+	
+	public void adjustWidthOffsetOnFlyRes(int resID){
+		int i = (int) getContext().getResources().getDimension(resID);
+		adjustWidthOffsetOnFly(i);
+	}
+	
+	@SuppressWarnings("deprecation")
+	public void adjustWidthOffsetOnFly(int offset){
+		
+		int displayWidth;
+		
+		Display display = ((WindowManager) getContext()
+				.getSystemService(Context.WINDOW_SERVICE))
+				.getDefaultDisplay();
+		
+		try {
+			
+			Class<?> cls = Display.class;
+			Class<?>[] parameterTypes = {Point.class};
+			Point parameter = new Point();
+			Method method = cls.getMethod("getSize", parameterTypes);
+			method.invoke(display, parameter);
+			displayWidth = parameter.x;
+			
+		} catch (Exception e) {
+			
+			displayWidth = display.getWidth();
+			
+		}		
+						
+		int newAboveOffset = offset - displayWidth;
+		
+		mViewAbove.updateAboveView( newAboveOffset );
+		
+		setBehindOffset(offset);
+				
+	}	
 
 }
