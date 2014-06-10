@@ -1025,7 +1025,6 @@ public class SlidingMenu extends RelativeLayout {
 				
 	}	
 
-	@SuppressLint("NewApi")
 	@SuppressWarnings("deprecation")	
 	private int getDisplayWidth(){
 
