@@ -1006,5 +1006,11 @@ public class CustomViewAbove extends ViewGroup {
 		}
 		return false;
 	}
+	
+	public void updateAboveView(int offset){
+		
+	smoothScrollTo(offset,0);
+	
+	}	
 
 }
