@@ -1,7 +1,5 @@
 package com.jeremyfeinstein.slidingmenu.lib;
 
-import java.lang.reflect.Method;
-
 import android.annotation.SuppressLint;
 import android.annotation.TargetApi;
 import android.app.Activity;
@@ -623,21 +621,11 @@ public class SlidingMenu extends RelativeLayout {
 	 *
 	 * @param i The width the Sliding Menu will open to, in pixels
 	 */
-	@SuppressWarnings("deprecation")
+	
 	public void setBehindWidth(int i) {
-		int width;
-		Display display = ((WindowManager) getContext().getSystemService(Context.WINDOW_SERVICE))
-				.getDefaultDisplay();
-		try {
-			Class<?> cls = Display.class;
-			Class<?>[] parameterTypes = {Point.class};
-			Point parameter = new Point();
-			Method method = cls.getMethod("getSize", parameterTypes);
-			method.invoke(display, parameter);
-			width = parameter.x;
-		} catch (Exception e) {
-			width = display.getWidth();
-		}
+		
+		int width = getDisplayWidth();
+		
 		setBehindOffset(width-i);
 	}
 
@@ -1026,36 +1014,38 @@ public class SlidingMenu extends RelativeLayout {
 		adjustWidthOffsetOnFly(i);
 	}
 	
-	@SuppressWarnings("deprecation")
-	public void adjustWidthOffsetOnFly(int offset){
-		
-		int displayWidth;
-		
-		Display display = ((WindowManager) getContext()
-				.getSystemService(Context.WINDOW_SERVICE))
-				.getDefaultDisplay();
-		
-		try {
-			
-			Class<?> cls = Display.class;
-			Class<?>[] parameterTypes = {Point.class};
-			Point parameter = new Point();
-			Method method = cls.getMethod("getSize", parameterTypes);
-			method.invoke(display, parameter);
-			displayWidth = parameter.x;
-			
-		} catch (Exception e) {
-			
-			displayWidth = display.getWidth();
-			
-		}		
-						
-		int newAboveOffset = offset - displayWidth;
+
+	public void adjustWidthOffsetOnFly(int offset){			
+								
+		int newAboveOffset = offset - getDisplayWidth();
 		
 		mViewAbove.updateAboveView( newAboveOffset );
 		
 		setBehindOffset(offset);
 				
 	}	
+
+	@SuppressLint("NewApi")
+	@SuppressWarnings("deprecation")	
+	private int getDisplayWidth(){
+
+		Display display = ((WindowManager) getContext()
+				.getSystemService(Context.WINDOW_SERVICE))
+				.getDefaultDisplay();
+		
+		Point point = new Point();
+		
+		if( Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB_MR2 ){
+			
+			display.getSize(point);
+			
+		}else{
+			
+			point.x = display.getWidth();
+		}
+		
+		return point.x;
+		
+	}
 
 }
