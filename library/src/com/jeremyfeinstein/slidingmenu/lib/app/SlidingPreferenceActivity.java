@@ -3,12 +3,12 @@ package com.jeremyfeinstein.slidingmenu.lib.app;
 import com.jeremyfeinstein.slidingmenu.lib.SlidingMenu;
 
 import android.os.Bundle;
-import android.preference.PreferenceActivity;
+import android.support.v7.app.ActionBarActivity;
 import android.view.KeyEvent;
 import android.view.View;
 import android.view.ViewGroup.LayoutParams;
 
-public class SlidingPreferenceActivity extends PreferenceActivity implements SlidingActivityBase {
+public class SlidingPreferenceActivity extends ActionBarActivity implements SlidingActivityBase {
 
 	private SlidingActivityHelper mHelper;
 
@@ -135,8 +135,8 @@ public class SlidingPreferenceActivity extends PreferenceActivity implements Sli
 	/* (non-Javadoc)
 	 * @see com.jeremyfeinstein.slidingmenu.lib.app.SlidingActivityBase#setSlidingActionBarEnabled(boolean)
 	 */
-	public void setSlidingActionBarEnabled(boolean b) {
-		mHelper.setSlidingActionBarEnabled(b);
+	public void setSlidingActionBarEnabled(boolean enabled) {
+		mHelper.setSlidingActionBarEnabled(enabled);
 	}
 
 	/* (non-Javadoc)
@@ -147,5 +147,10 @@ public class SlidingPreferenceActivity extends PreferenceActivity implements Sli
 		boolean b = mHelper.onKeyUp(keyCode, event);
 		if (b) return b;
 		return super.onKeyUp(keyCode, event);
+	}
+
+	@Override
+	public void setOverlayActionBarEnabled(boolean enabled) {
+		mHelper.setOverlayActionBarEnabled( enabled );
 	}
 }

@@ -1,14 +1,14 @@
 package com.jeremyfeinstein.slidingmenu.lib.app;
 
 import android.os.Bundle;
-import android.support.v4.app.FragmentActivity;
+import android.support.v7.app.ActionBarActivity;
 import android.view.KeyEvent;
 import android.view.View;
 import android.view.ViewGroup.LayoutParams;
 
 import com.jeremyfeinstein.slidingmenu.lib.SlidingMenu;
 
-public class SlidingFragmentActivity extends FragmentActivity implements SlidingActivityBase {
+public class SlidingFragmentActivity extends ActionBarActivity implements SlidingActivityBase {
 
 	private SlidingActivityHelper mHelper;
 
@@ -135,8 +135,8 @@ public class SlidingFragmentActivity extends FragmentActivity implements Sliding
 	/* (non-Javadoc)
 	 * @see com.jeremyfeinstein.slidingmenu.lib.app.SlidingActivityBase#setSlidingActionBarEnabled(boolean)
 	 */
-	public void setSlidingActionBarEnabled(boolean b) {
-		mHelper.setSlidingActionBarEnabled(b);
+	public void setSlidingActionBarEnabled(boolean enabled) {
+		mHelper.setSlidingActionBarEnabled(enabled);
 	}
 
 	/* (non-Javadoc)
@@ -147,6 +147,11 @@ public class SlidingFragmentActivity extends FragmentActivity implements Sliding
 		boolean b = mHelper.onKeyUp(keyCode, event);
 		if (b) return b;
 		return super.onKeyUp(keyCode, event);
+	}
+
+	@Override
+	public void setOverlayActionBarEnabled( boolean enabled ) {
+		mHelper.setOverlayActionBarEnabled( enabled );
 	}
 
 }
