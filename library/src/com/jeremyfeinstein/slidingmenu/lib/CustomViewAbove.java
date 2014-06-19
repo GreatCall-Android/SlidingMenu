@@ -1009,7 +1009,13 @@ public class CustomViewAbove extends ViewGroup {
 	
 	public void updateAboveView(int offset){
 		
-	smoothScrollTo(offset,0);
+        int sx = getScrollX();
+        int sy = getScrollY();
+        int dx = offset - sx;
+        int dy = - sy;
+
+        mScroller.startScroll(sx, sy, dx, dy, 0);
+        invalidate();
 	
 	}	
 
